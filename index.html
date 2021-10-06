@@ -41,8 +41,28 @@
 
 <body>
     <div class="wrapper">
-        <button id="button1" class="button button5" onclick="location.href='/files'">View Files</button>
+        <p id="p1"></p>
+        <button id="button1" class="button button5">View Files</button>
     </div>
+
+    <script>
+        let viewFiles = document.getElementById("button1");
+        const p1 = document.getElementById("p1");
+        viewFiles.addEventListener("click", ()=>{
+            fetch("http://localhost/files",{
+                method: "GET", headers: {
+            // Accept: "application/json",
+            // "Content-Type": "application/json"
+          }
+            }).then((res)=>{
+                res.json().then((data)=>{
+                    if(p1.innerHTML == ""){
+                        p1.innerHTML += data;
+                    }
+            });
+            });
+        });
+    </script>
 </body>
 
 </html>
